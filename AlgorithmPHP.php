@@ -5,30 +5,56 @@
     <title>Алгоритм на PHP</title>
 </head>
 <body>
-<form action= "AlgorithmPHP.php" method= "POST">
+<form action= "" method= "POST">
     <p><b>Введите число:</b><br>
-    <input type="text" name="integer" size="40">
-    <p><input type="submit" value="Отправить"></p>
+        <input type="text" name="integer" size="40">
+    <p><input type="submit" value="Отправить" name="sub"></p>
 </form>
 
 <?php
 
-$integer=$_POST['integer'];
+$integer = htmlspecialchars($_POST['integer']);
 
 $a = 1;
 $b = 1;
 $p = $integer;
 
-if ($a > $p) {
-    if ($a == $p) {
-        echo "задуманное число входит в числовой ряд";
+if (isset($_POST['sub'])) {
+    if($a > $p) {
+        echo "задуманное число НЕ входит в числовой ряд";
     } else {
-        
-    }
-} else {
-    echo "задуманное число НЕ входит в числовой ряд";
-}
+        if($a == $p) {
+            echo "задуманное число входит в числовой ряд";
+        } else {
+            while ($p < 10000000) {
+                $p = $a;
+                $a + $b;
+                $b = $p;
 
+                if (isset($_POST['sub'])) {
+                    if($a > $p) {
+                        echo "задуманное число НЕ входит в числовой ряд";
+                        break;
+                    } else {
+                        if($a == $p) {
+                            echo "задуманное число входит в числовой ряд";
+                            break;
+                        } else {
+                            while ($p < 10000000) {
+                                $p = $a;
+                                $a + $b;
+                                $b = $p;
+                                break;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+}
 
 ?>
 
